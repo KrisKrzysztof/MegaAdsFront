@@ -16,6 +16,7 @@ export const AddForm = () => {
             city: '',
         },
     });
+    const [addressError, setAddressError] = useState(false);
 
     const saveAd = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -24,10 +25,6 @@ export const AddForm = () => {
 
         try {
             const {lat, lon} = await geocode(`${form.address.street}, ${form.address.city}`);
-
-            if (!lat || !lon) {
-                console.log('Nie można znaleźć podanego adresu.');
-            }
 
             const res = await fetch('http://localhost:3001/ad', {
                 method: 'POST',
@@ -43,6 +40,10 @@ export const AddForm = () => {
             const data = await res.json();
             setId(data.id);
 
+        } catch (error) {
+            if (error == `TypeError: Cannot read properties of undefined (reading 'lat')`) {
+                setAddressError(true); // todo najlepiej jako popup
+            }
         } finally {
             setLoading(false);
         }
@@ -72,6 +73,10 @@ export const AddForm = () => {
 
     if (id) {
         return <h2>Twoje ogłoszenie "{form.name}" zostało poprawnie dodane do serwisu pod numerem ID {id}</h2>
+    }
+
+    if (addressError) {
+        return <h2>Coś poszło nie tak, prawdopodobnie nie można znaleźć podanego adresu. Spróbuj ponownie wpisując poprawny adres.</h2>
     }
 
     return <form className="add-form" action="" onSubmit={saveAd}>
