@@ -6,8 +6,8 @@
 .add-form label {
     display: block;
     font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .add-form label small{
@@ -21,6 +21,23 @@
 }
 
 .add-form button {
+    margin-top: 10px;
     padding: 10px;
     width: 20%;
+}
+
+.error-info {
+    width: 100%;
+    color: red;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: solid;
+}
+
+.added-info {
+    width: 100%;
+    color: green;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: solid;
 }

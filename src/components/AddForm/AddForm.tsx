@@ -21,6 +21,8 @@ export const AddForm = () => {
     const saveAd = async (e: SyntheticEvent) => {
         e.preventDefault();
 
+        setId('')
+        setAddressError(false);
         setLoading(true);
 
         try {
@@ -42,7 +44,9 @@ export const AddForm = () => {
 
         } catch (error) {
             if (error == `TypeError: Cannot read properties of undefined (reading 'lat')`) {
-                setAddressError(true); // todo najlepiej jako popup
+                setAddressError(true);
+            } else {
+                alert(error);
             }
         } finally {
             setLoading(false);
@@ -68,15 +72,7 @@ export const AddForm = () => {
     };
 
     if (loading) {
-        return <h2>Trwa dodawanie ogłoszenia...</h2>
-    }
-
-    if (id) {
-        return <h2>Twoje ogłoszenie "{form.name}" zostało poprawnie dodane do serwisu pod numerem ID {id}</h2>
-    }
-
-    if (addressError) {
-        return <h2>Coś poszło nie tak, prawdopodobnie nie można znaleźć podanego adresu. Spróbuj ponownie wpisując poprawny adres.</h2>
+        return <h2>Dodawanie ogłoszenia...</h2>
     }
 
     return <form className="add-form" action="" onSubmit={saveAd}>
@@ -150,6 +146,14 @@ export const AddForm = () => {
                 /> <br/> <small>Miasto</small>
             </label>
         </p>
+        <small className="error-info" style={{display: addressError ? 'block' : 'none' }}>
+            Mie można znaleźć podanego adresu.<br/> Spróbuj ponownie wpisując poprawny adres.
+        </small>
+        <small className="added-info" style={{display: id ? 'block' : 'none' }}>
+            Twoje ogłoszenie zostało poprawnie dodane do serwisu pod nazwą "{form.name}" i jest teraz widoczne na mapie w mieście {form.address.city}.
+            <br/>
+            Możesz dodać nowe ogłoszenie zmieniając dane, lub przejść do mapy klikając odnośnik u góry strony.
+        </small>
 
         <Btn text="Zapisz"/>
     </form>
