@@ -9,4 +9,5 @@ button, .btn {
     border-radius: 3px;
     line-height: 22px;
     text-decoration: none;
+    cursor: pointer;
 }

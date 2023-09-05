@@ -3,6 +3,7 @@ import {Btn} from "../common/Btn";
 
 import './Header.css';
 import {SearchContext} from "../../contexts/search.context";
+import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
     const {search, setSearch} = useContext(SearchContext);
@@ -13,9 +14,14 @@ export const Header = () => {
         setSearch(inputValue);
     };
 
+    const navigate = useNavigate();
+    const goToMainPage = () =>{
+        navigate('/');
+    }
+
     return (
         <header>
-            <h1>
+            <h1 onClick={goToMainPage}>
                 <strong>Mega</strong> ogłoszenia
             </h1>
             <Btn to="/add" text="Dodaj ogłoszenie"/>
