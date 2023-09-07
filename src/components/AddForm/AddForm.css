@@ -26,17 +26,9 @@
     width: 20%;
 }
 
-.error-info {
+.info {
     width: 100%;
     color: red;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: solid;
-}
-
-.added-info {
-    width: 100%;
-    color: green;
     margin-bottom: 15px;
     padding: 10px;
     border: solid;
