@@ -79,6 +79,7 @@ export const AddForm = () => {
 
     return <form className="add-form" action="" onSubmit={saveAd}>
         <h1>Dodawanie ogłoszenia</h1>
+        <span style={{display: id ? 'none' : 'block'}}>
         <p>
             <label>
                 Nazwa: <br/>
@@ -148,14 +149,17 @@ export const AddForm = () => {
                 /> <br/> <small>Miasto</small>
             </label>
         </p>
+        </span>
         <small className="info"
                style={{display: addressError || id ? 'block' : 'none',
-               color: id ? "green" : "red"}}
+                   color: id ? "green" : "red"}}
         >
             {
-                addressError ? <p>Mie można znaleźć podanego adresu.<br/>Spróbuj ponownie, wpisując poprawny adres.</p> : <p>Twoje ogłoszenie zostało poprawnie dodane do serwisu pod nazwą "{form.name}" i jest teraz widoczne na mapie w mieście {form.address.city}.<br/><br/>Możesz dodać nowe ogłoszenie lub przejść do strony mapy klikając odnośnik u góry strony.</p>
+                addressError ? <p>Mie można znaleźć podanego adresu.<br/>Spróbuj ponownie, wpisując poprawny adres.</p> : <p>Twoje ogłoszenie zostało poprawnie dodane do serwisu pod nazwą <b>"{form.name}"</b> i jest teraz widoczne na mapie w mieście <b>{form.address.city}</b>.<br/><br/>Możesz dodać nowe ogłoszenie<br/> lub przejść do mapy klikając odnośnik u góry strony.</p>
             }
         </small>
-        <Btn text="Zapisz"/>
+        <span style={{display: id ? 'none' : 'block'}}>
+            <Btn text="Zapisz" />
+        </span>
     </form>
 }
