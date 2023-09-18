@@ -4,6 +4,7 @@ header {
     color: white;
     display: flex;
     justify-content: space-between;
+    width: -webkit-fill-available;
 }
 
 header h1 {

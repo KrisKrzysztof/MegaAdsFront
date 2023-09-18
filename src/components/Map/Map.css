@@ -1,8 +1,15 @@
 .map {
     background: green;
     height: calc(100vh - 50px);
+    width: auto;
 }
 
 .leaflet-container {
     height: 100%;
+    width: auto;
+}
+
+#root {
+    width: fit-content;
+    min-width: -webkit-fill-available;
 }
